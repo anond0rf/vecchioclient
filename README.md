@@ -2,7 +2,7 @@
 
 [![English](https://img.shields.io/badge/lang-en-blue.svg)](README-en.md) [![Italiano](https://img.shields.io/badge/lang-it-blue.svg)](README.md) 
 
-**VecchioClient** è una libreria Go che fornisce un client per pubblicare su [vecchiochan.com](https://vecchiochan.com/).  
+**VecchioClient** è una libreria Go che fornisce un client per postare su [vecchiochan.com](https://vecchiochan.com/).  
  
 È basato sul reverse-engineering dell'endpoint `/post.php` di [NPFchan](https://github.com/fallenPineapple/NPFchan), astraendo i dettagli dell'invio del form e della gestione delle richieste http.
 
