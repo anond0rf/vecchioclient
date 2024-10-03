@@ -120,7 +120,7 @@ VecchioClient offers a simple and straightforward API to interact with vecchioch
     ```
 
     In this case, default values will be assigned to the other fields.  
-    **Thread** is the only **mandatory** field checked by the client but keep in mind that, as the rules vary across boards and because of board settings, more fields are probably required for replying.
+    **Board** and **Thread** are the only **mandatory** fields checked by the client but keep in mind that, as the rules vary across boards and because of board settings, more fields are probably required for replying.
 
 ### Custom Client Configuration
 

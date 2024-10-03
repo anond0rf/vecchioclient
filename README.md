@@ -120,7 +120,7 @@ VecchioClient offre un'API semplice e diretta per interagire con vecchiochan. Ec
     ```
 
     In questo caso, valori predefiniti saranno assegnati agli altri campi.  
-    **Thread** è l'unico campo **obbligatorio** controllato dal client, ma tieni presente che, poiché le regole variano tra le board e ogni board ha le sue impostazioni, potrebbero essere necessari più campi per postare.
+    **Board** e **Thread** sono gli unici campi **obbligatori** controllati dal client, ma tieni presente che, poiché le regole variano tra le board e ogni board ha le sue impostazioni, potrebbero essere necessari più campi per postare.
 
 ### Configurazione personalizzata del client
 
