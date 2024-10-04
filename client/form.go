@@ -85,7 +85,10 @@ func constructPostData(formFields map[string]string, post model.Post) (*bytes.Bu
 		return nil, "", fmt.Errorf("unexpected post type")
 	}
 
-	writeFileFields(writer, post)
+	err = writeFileFields(writer, post)
+	if err != nil {
+		return nil, "", fmt.Errorf("error writing files to form: %w", err)
+	}
 
 	return &postData, writer.FormDataContentType(), nil
 }
