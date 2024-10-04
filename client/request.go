@@ -13,6 +13,10 @@ import (
 func (c *VecchioClient) sendGetRequest(userAgent string, post model.Post) (*http.Response, error) {
 	reqURL := generateGetURL(post)
 
+	if c.verbose {
+		c.logger.Println("Sending GET request to: ", reqURL)
+	}
+
 	req, err := http.NewRequest("GET", reqURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("creating GET request to %s: %w", reqURL, err)
@@ -50,6 +54,11 @@ func setGetHeaders(req *http.Request, userAgent string, u *url.URL) {
 
 func (c *VecchioClient) sendPostRequest(postData *bytes.Buffer, contentType, userAgent string, post model.Post) (*http.Response, error) {
 	reqURL := fmt.Sprintf("https://%s/post.php", host)
+
+	if c.verbose {
+		c.logger.Println("Sending POST request to: ", reqURL)
+	}
+
 	req, err := http.NewRequest("POST", reqURL, postData)
 	if err != nil {
 		return nil, fmt.Errorf("creating POST request to %s: %w", reqURL, err)

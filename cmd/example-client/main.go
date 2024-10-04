@@ -27,7 +27,7 @@ func main() {
 
 	id, err := vc.NewThread(thread)
 	if err != nil {
-		log.Fatalf("Unable to post thread %+v. Error: %v", thread, err)
+		log.Fatalf("Unable to post thread %+v. Error: %v\n", thread, err)
 	}
 	fmt.Printf("Thread posted successfully (id: %d) - %+v\n", id, thread)
 
@@ -47,7 +47,7 @@ func main() {
 
 	id, err = vc.PostReply(reply)
 	if err != nil {
-		log.Fatalf("Unable to post reply %+v. Error: %v", reply, err)
+		log.Fatalf("Unable to post reply %+v. Error: %v\n", reply, err)
 	}
 	fmt.Printf("Reply posted successfully (id: %d) - %+v\n", id, reply)
 }

@@ -43,13 +43,13 @@ func parseForm(body io.Reader) (map[string]string, error) {
 	return formFields, nil
 }
 
-func constructPostData(formFields map[string]string, post model.Post) (*bytes.Buffer, string, error) {
+func (c *VecchioClient) constructPostData(formFields map[string]string, post model.Post) (*bytes.Buffer, string, error) {
 	var postData bytes.Buffer
 	writer := multipart.NewWriter(&postData)
 
 	defer func() {
 		if err := writer.Close(); err != nil {
-			fmt.Println("Error closing multipart writer: ", err)
+			c.logger.Println("Error closing multipart writer: ", err)
 		}
 	}()
 
@@ -83,6 +83,10 @@ func constructPostData(formFields map[string]string, post model.Post) (*bytes.Bu
 		writer.WriteField("post", "Nuovo Filo")
 	default:
 		return nil, "", fmt.Errorf("unexpected post type")
+	}
+
+	if c.verbose {
+		c.logger.Println("Form data (excl. files): \n", postData.String())
 	}
 
 	err = writeFileFields(writer, post)

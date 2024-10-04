@@ -26,7 +26,10 @@ func (c *VecchioClient) sendPost(post model.Post) (int, error) {
 	}
 	defer getResp.Body.Close()
 
-	c.logger.Println("GET Response Status Code: ", getResp.StatusCode)
+	if c.verbose {
+		c.logger.Println("GET Response Status Code: ", getResp.StatusCode)
+	}
+
 	if getResp.StatusCode != http.StatusOK {
 		return 0, fmt.Errorf("GET received non-200 response: %d", getResp.StatusCode)
 	}
@@ -36,7 +39,7 @@ func (c *VecchioClient) sendPost(post model.Post) (int, error) {
 		return 0, fmt.Errorf("error parsing HTML form: %w", err)
 	}
 
-	postData, contentType, err := constructPostData(formFields, post)
+	postData, contentType, err := c.constructPostData(formFields, post)
 	if err != nil {
 		return 0, fmt.Errorf("error constructing POST data: %w", err)
 	}
@@ -47,7 +50,10 @@ func (c *VecchioClient) sendPost(post model.Post) (int, error) {
 	}
 	defer postResp.Body.Close()
 
-	c.logger.Println("POST Response Status Code: ", postResp.StatusCode)
+	if c.verbose {
+		c.logger.Println("POST Response Status Code: ", postResp.StatusCode)
+	}
+
 	return c.handlePostResponse(postResp)
 }
 
