@@ -28,6 +28,11 @@ func (c *VecchioClient) sendGetRequest(userAgent string, post model.Post) (*http
 	}
 
 	setGetHeaders(req, userAgent, u)
+
+	if c.verbose {
+		c.printHeaders(req)
+	}
+
 	return c.client.Do(req)
 }
 
@@ -66,6 +71,11 @@ func (c *VecchioClient) sendPostRequest(postData *bytes.Buffer, contentType, use
 	}
 
 	setPostHeaders(req, post, userAgent, u, contentType)
+
+	if c.verbose {
+		c.printHeaders(req)
+	}
+
 	return c.client.Do(req)
 }
 
@@ -85,4 +95,17 @@ func setPostHeaders(req *http.Request, post model.Post, userAgent string, u *url
 	req.Header.Set("Accept", "*/*")
 	req.Header.Set("Accept-Language", "it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3")
 	req.Header.Set("Accept-Encoding", "identity")
+}
+
+func (c *VecchioClient) printHeaders(req *http.Request) {
+	var headersBuilder strings.Builder
+
+	headersBuilder.WriteString(fmt.Sprintf("%s Request Headers:\n", req.Method))
+	for name, values := range req.Header {
+		for _, value := range values {
+			headersBuilder.WriteString(fmt.Sprintf("%s: %s\n", name, value))
+		}
+	}
+
+	c.logger.Println(headersBuilder.String())
 }
