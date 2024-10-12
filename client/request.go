@@ -32,14 +32,10 @@ func (c *VecchioClient) sendGetRequest(userAgent string, post model.Post) (*http
 }
 
 func generateGetURL(post model.Post) string {
-	switch p := post.(type) {
-	case Reply:
-		return fmt.Sprintf("https://%s/%s/res/%d.html", host, p.Board, p.Thread)
-	case Thread:
-		return fmt.Sprintf("https://%s/%s/", host, p.Board)
-	default:
-		return ""
+	if post.GetThread() > 0 {
+		return fmt.Sprintf("https://%s/%s/res/%d.html", host, post.GetBoard(), post.GetThread())
 	}
+	return fmt.Sprintf("https://%s/%s/", host, post.GetBoard())
 }
 
 func setGetHeaders(req *http.Request, userAgent string, u *url.URL) {
@@ -74,13 +70,15 @@ func (c *VecchioClient) sendPostRequest(postData *bytes.Buffer, contentType, use
 }
 
 func setPostHeaders(req *http.Request, post model.Post, userAgent string, u *url.URL, contentType string) {
-	switch p := post.(type) {
-	case Reply:
-		req.Header.Set("Referer", fmt.Sprintf("https://%s/%s/res/%d.html", u.Host, p.GetBoard(), p.GetThread()))
-	case Thread:
-		req.Header.Set("Referer", fmt.Sprintf("https://%s/%s/", u.Host, p.GetBoard()))
+	var referer string
+
+	if post.GetThread() > 0 {
+		referer = fmt.Sprintf("https://%s/%s/res/%d.html", u.Host, post.GetBoard(), post.GetThread())
+	} else {
+		referer = fmt.Sprintf("https://%s/%s/", u.Host, post.GetBoard())
 	}
 
+	req.Header.Set("Referer", referer)
 	req.Header.Set("Content-Type", contentType)
 	req.Header.Set("User-Agent", userAgent)
 	req.Header.Set("Origin", fmt.Sprintf("https://%s", u.Host))

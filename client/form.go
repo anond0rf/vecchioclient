@@ -74,15 +74,12 @@ func (c *VecchioClient) constructPostData(formFields map[string]string, post mod
 	writer.WriteField("password", post.GetPassword())
 	writer.WriteField("json_response", "1")
 
-	switch p := post.(type) {
-	case Reply:
-		writer.WriteField("thread", strconv.Itoa(p.Thread))
+	if post.GetThread() > 0 {
+		writer.WriteField("thread", strconv.Itoa(post.GetThread()))
 		writer.WriteField("post", "Nuova Risposta")
-	case Thread:
-		writer.WriteField("subject", p.Subject)
+	} else {
+		writer.WriteField("subject", post.GetSubject())
 		writer.WriteField("post", "Nuovo Filo")
-	default:
-		return nil, "", fmt.Errorf("unexpected post type")
 	}
 
 	if c.verbose {
