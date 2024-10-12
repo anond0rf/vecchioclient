@@ -162,7 +162,7 @@ vc := client.NewVecchioClientWithConfig(config)
 
 ## License
 
-VecchioClient is licensed under the [LGPLv3 License](./LICENSE). 
+VecchioClient is licensed under the [LGPL-3.0 License](./LICENSE). 
 
 This means you can use, modify, and distribute the software, provided that any modified versions are also licensed under the LGPLv3. 
 
