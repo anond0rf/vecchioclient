@@ -12,7 +12,7 @@ import (
 
 func (c *VecchioClient) sendPost(post model.Post) (int, error) {
 	if err := validatePost(post); err != nil {
-		return 0, fmt.Errorf("error validating reply: %w", err)
+		return 0, fmt.Errorf("error validating post: %w", err)
 	}
 
 	userAgent := getUserAgent()
@@ -71,16 +71,16 @@ func (c *VecchioClient) handlePostResponse(resp *http.Response) (int, error) {
 		return 0, fmt.Errorf("POST received non-200 response: %d", resp.StatusCode)
 	}
 
-	var replyResp model.ReplyResponse
-	if err := json.Unmarshal(body, &replyResp); err != nil {
-		var errorResp model.ReplyErrorResponse
-		if err := json.Unmarshal(body, &errorResp); err != nil {
+	var sResp model.SuccessResponse
+	if err := json.Unmarshal(body, &sResp); err != nil {
+		var eResp model.ErrorResponse
+		if err := json.Unmarshal(body, &eResp); err != nil {
 			return 0, fmt.Errorf("failed to decode POST response: %w", err)
 		}
-		return 0, fmt.Errorf("POST responded with error: %s", errorResp.Error)
+		return 0, fmt.Errorf("POST responded with error: %s", eResp.Error)
 	}
 
-	id, err := strconv.Atoi(replyResp.ID)
+	id, err := strconv.Atoi(sResp.ID)
 	if err != nil {
 		return 0, fmt.Errorf("unable to read id from response body: %w", err)
 	}

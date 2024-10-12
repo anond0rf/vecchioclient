@@ -1,11 +1,11 @@
 package model
 
-type ReplyResponse struct {
+type SuccessResponse struct {
 	Redirect string `json:"redirect"`
 	Noko     bool   `json:"noko"`
 	ID       string `json:"id"`
 }
 
-type ReplyErrorResponse struct {
+type ErrorResponse struct {
 	Error string `json:"error"`
 }
