@@ -1,3 +1,7 @@
+// Package client provides a client for interacting with vecchiochan.
+//
+// It includes functionality for creating new threads and  posting replies to existing threads, and allows
+// for custom http.Client, logger, logging behavior, and User-Agent header.
 package client
 
 import (
@@ -84,7 +88,13 @@ func NewVecchioClientWithConfig(config Config) *VecchioClient {
 // It returns the id of the newly-created thread or an error if the operation fails.
 func (c *VecchioClient) NewThread(thread Thread) (int, error) {
 	c.logger.Printf("Submitting new thread... (thread: %+v)\n", thread)
-	return c.sendPost(thread)
+	id, err := c.sendPost(thread)
+	if err != nil {
+		c.logger.Printf("Unable to post thread %+v. Error: %v\n", thread, err)
+	} else {
+		c.logger.Printf("Thread posted successfully (id: %d) - %+v\n", id, thread)
+	}
+	return id, err
 }
 
 // PostReply submits a reply to an existing thread on vecchiochan.
@@ -94,5 +104,11 @@ func (c *VecchioClient) NewThread(thread Thread) (int, error) {
 // It returns the id of the submitted reply or an error if the operation fails.
 func (c *VecchioClient) PostReply(reply Reply) (int, error) {
 	c.logger.Printf("Submitting new reply... (reply: %+v)\n", reply)
-	return c.sendPost(reply)
+	id, err := c.sendPost(reply)
+	if err != nil {
+		c.logger.Printf("Unable to post reply %+v. Error: %v\n", reply, err)
+	} else {
+		c.logger.Printf("Reply posted successfully (id: %d) - %+v\n", id, reply)
+	}
+	return id, err
 }
