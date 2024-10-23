@@ -165,8 +165,8 @@ vc := client.NewVecchioClientWithConfig(config)
 
 VecchioClient è concesso in licenza sotto la [Licenza LGPL-3.0](./LICENSE).
 
-Questo significa che puoi usare, modificare e distribuire il software, a condizione che eventuali versioni modificate siano anch'esse concesse in licenza sotto la LGPLv3.
+Questo significa che puoi usare, modificare e distribuire il software, a condizione che eventuali versioni modificate siano anch'esse concesse in licenza sotto la LGPL-3.0.
 
 Per maggiori dettagli, consulta il testo completo della licenza nel file [LICENSE](./LICENSE).
 
-Copyright © anond0rf
+Copyright © 2024 anond0rf
