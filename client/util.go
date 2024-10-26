@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/anond0rf/vecchioclient/model"
+	"github.com/anond0rf/vecchioclient/internal/model"
 )
 
 func getUserAgent() string {

@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/anond0rf/vecchioclient/model"
+	"github.com/anond0rf/vecchioclient/internal/model"
 )
 
 func (c *VecchioClient) sendGetRequest(userAgent string, post model.Post) (*http.Response, error) {

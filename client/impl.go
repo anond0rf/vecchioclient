@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/anond0rf/vecchioclient/model"
+	"github.com/anond0rf/vecchioclient/internal/model"
 )
 
 func (c *VecchioClient) sendPost(post model.Post) (int, error) {

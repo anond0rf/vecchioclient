@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/anond0rf/vecchioclient/model"
+	"github.com/anond0rf/vecchioclient/internal/model"
 )
 
 func parseForm(body io.Reader) (map[string]string, error) {
