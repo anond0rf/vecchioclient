@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 [![English](https://img.shields.io/badge/lang-en-blue.svg)](README-en.md) [![Italiano](https://img.shields.io/badge/lang-it-blue.svg)](README.md) 
-![License](https://img.shields.io/github/license/anond0rf/vecchioclient) [![GitHub Pre-Release](https://img.shields.io/github/v/release/anond0rf/vecchioclient?include_prereleases&label=pre-release)](https://github.com/anond0rf/vecchioclient/releases) [![Go Version](https://img.shields.io/github/go-mod/go-version/anond0rf/vecchioclient)](https://github.com/anond0rf/vecchioclient)
+![License](https://img.shields.io/github/license/anond0rf/vecchioclient) [![GitHub Pre-Release](https://img.shields.io/github/v/release/anond0rf/vecchioclient?include_prereleases&label=pre-release)](https://github.com/anond0rf/vecchioclient/releases) [![Go Report Card](https://goreportcard.com/badge/github.com/anond0rf/vecchioclient)](https://goreportcard.com/report/github.com/anond0rf/vecchioclient) [![Go Version](https://img.shields.io/github/go-mod/go-version/anond0rf/vecchioclient)](https://github.com/anond0rf/vecchioclient) [![GoDoc](https://godoc.org/github.com/anond0rf/vecchioclient?status.svg)](https://godoc.org/github.com/anond0rf/vecchioclient)
 <br />
 <div align="center">
   <a href="https://github.com/anond0rf/vecchioclient">
@@ -162,7 +162,7 @@ vc := client.NewVecchioClientWithConfig(config)
 
 ## License
 
-VecchioClient is licensed under the [LGPL-3.0 License](./LICENSE). 
+VecchioClient is licensed under the [LGPL-3.0 License](https://www.gnu.org/licenses/lgpl-3.0.html). 
 
 This means you can use, modify, and distribute the software, provided that any modified versions are also licensed under the LGPL-3.0. 
 
